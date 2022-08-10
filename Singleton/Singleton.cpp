@@ -23,7 +23,7 @@ Singleton *Singleton::CreateInstance()  {
     */
 
     /* C++11 elegant implement. */
-    std::call_once(onceFlag, [] { instance = new Singleton; } );
+    std::call_once(onceFlag, [&] { instance = new Singleton; } );
 
     ++count;
     return instance;
