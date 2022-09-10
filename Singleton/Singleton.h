@@ -12,7 +12,7 @@ using namespace std;
 
 class Singleton {
 private:
-    static std::atomic<Singleton*> instance;
+    static shared_ptr<Singleton> instance;
     static once_flag onceFlag;
     static atomic<int> count;
 
@@ -26,7 +26,7 @@ private:
     Singleton& operator=(const Singleton& rhs) = delete;
 
 public:
-    static Singleton* CreateInstance();
+    static shared_ptr<Singleton> CreateInstance();
 
     //Resource recycle by reference counting.
     ~Singleton();

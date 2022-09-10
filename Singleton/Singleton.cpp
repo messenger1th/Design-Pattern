@@ -5,13 +5,14 @@
 
 
 /* implementation */
-std::atomic<Singleton*> Singleton::instance(nullptr);
-std::atomic<int> Singleton::count(0);
+std::shared_ptr<Singleton> Singleton::instance(nullptr);
 std::once_flag Singleton::onceFlag;
+
+//variable for traditional implementation.
 std::mutex Singleton::m;
 std::unique_lock<std::mutex> Singleton::lock;
 
-Singleton *Singleton::CreateInstance()  {
+shared_ptr<Singleton> Singleton::CreateInstance()  {
 
     /* traditional implementation. */
     /*
@@ -23,15 +24,8 @@ Singleton *Singleton::CreateInstance()  {
     */
 
     /* C++11 elegant implement. */
-    std::call_once(onceFlag, [&] { instance = new Singleton; } );
-
-    ++count;
+    std::call_once(onceFlag, [&] { instance.reset(new Singleton); } );
     return instance;
 }
 
-Singleton::~Singleton()  {
-    --count;
-    if (count == 0) {
-        delete instance;
-    }
-}
+Singleton::~Singleton() = default;

@@ -1,5 +1,9 @@
 # Singleton Evolution
 
+## Implementation
+
+### Thread Safe
+
 For Lazy Initialization Class, for example **Lazy Singleton**, consider code as follow.
 
 ```cpp
@@ -35,7 +39,7 @@ By the way, `[&] { instance = new Singleton; }` Lambda Function is C++11feature,
 
 
 
-To be honest, use `static` is a solution, too.
+Honestly, use `static` is a solution, too.
 
 ```cpp
 Singleton *Singleton::CreateInstance()  {
@@ -43,3 +47,25 @@ Singleton *Singleton::CreateInstance()  {
     return instance;
 }
 ```
+
+
+
+### Distributed
+
+ deserialize it from shared space(e.g. file) and serialize it into file. 
+
+
+
+## Disadvantage
+
+1. hide the dependency of different class (without pass params or explicit create).
+2. Bad extensibility.(e.g. extend to two instances. one day)
+3. Bad testability.(hard to test by inheriting it)
+4. constructor without params.
+
+
+
+
+
+
+

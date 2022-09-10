@@ -1,6 +1,15 @@
 cmake_minimum_required(VERSION 3.20)
 project(Design_Pattern)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 20)
 
-add_executable(Design_Pattern main.cpp Singleton/Singleton.h Singleton/Singleton.cpp)
+add_executable(Design_Pattern main.cpp)
+add_executable(Factory Factory/FactoryMethod.cpp)
+add_executable(SingleFactor Factory/SingleFactor.cpp)
+add_executable(ProxyByInherit Proxy/ProxyByInherit.cpp)
+add_executable(ProxyByInterface Proxy/ProxyByInterface.cpp)
+add_executable(ClassAdapter Adapter/ClassAdapter.cpp)
+add_executable(Decorator Decorator/Decorator.cpp)
+add_executable(Observer Observer/Observer.cpp)
+add_executable(ChainOfResponsibility ChainOfResponsibility/ChainOfResponsibility.cpp)
+add_executable(Visitor Vistor/Visitor.cpp)
