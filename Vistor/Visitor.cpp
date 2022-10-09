@@ -21,12 +21,14 @@ public:
 };
 class IVisitor{
 public:
-    virtual void accpet(Visitor* visitor) = 0;
+    virtual void accept(Visitor* visitor) = 0;
 };
+
 class Base: public IVisitor{};
+
 class D1: public Base {
 public:
-    void accpet(Visitor* visitor) override {
+    void accept(Visitor* visitor) override {
         cout << "Visit: ";
         visitor->operation(this);
     }
@@ -34,14 +36,14 @@ public:
 
 class D2: public Base {
 public:
-    void accpet(Visitor* visitor) override {
+    void accept(Visitor* visitor) override {
         cout << "Visit: ";
         visitor->operation(this);
     }
 };
 class D3: public Base {
 public:
-    void accpet(Visitor* visitor) override {
+    void accept(Visitor* visitor) override {
         cout << "Visit: ";
         visitor->operation(this);
     }
@@ -53,7 +55,7 @@ int main() {
     vector<Base*> data{new D1, new D2, new D3};
     Visitor* visitor = new Visitor;
     for (const auto& ptr: data) {
-        ptr->accpet(visitor);
+        ptr->accept(visitor);
     }
     return 0;
 }
